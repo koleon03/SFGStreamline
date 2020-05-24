@@ -3,7 +3,8 @@ Panel panel;
 Snowflake[] flakes;
 
 void setup() {
-    fullScreen(P2D);
+    //fullScreen(P2D);
+    size(500,500);
     panel = new Panel();
     flakes = new Snowflake[5];
     int fHeight = 0;
@@ -19,7 +20,9 @@ void draw() {
     background(0);
     panel.drawPanel();
     for(Snowflake sf:flakes){
-        sf.drawSnowflake();
-    }
+        if(sf.drawSnowflake()){
+            println("Score");
+            }
+        }
+ }
     
-}

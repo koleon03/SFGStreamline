@@ -19,6 +19,7 @@ Panel panel;
 Snowflake[] flakes;
 
 public void setup() {
+    //fullScreen(P2D);
     
     panel = new Panel();
     flakes = new Snowflake[5];
@@ -35,21 +36,36 @@ public void draw() {
     background(0);
     panel.drawPanel();
     for(Snowflake sf:flakes){
-        sf.drawSnowflake();
-    }
+        if(sf.drawSnowflake()){
+            println("Score");
+            }
+        }
+ }
     
-}
 class Panel{
+
+    int lx;
+    int rx;
 
     public Panel(){
         drawPanel();
     }
 
     public void drawPanel(){
-        int cX = mouseX - 150;
+        int cX = mouseX - 50;
         int cY = height - 30;
-        rect(cX,cY,300,30);
+        rect(cX,cY,100,30);
+        lx = cX;
+        rx = cX + 100;
     } 
+
+    public int getLX(){
+        return lx;
+    }
+
+    public int getRX(){
+        return rx;
+    }
 
 }
 class Snowflake{
@@ -58,6 +74,8 @@ class Snowflake{
     int posY;
     int offset;
     int speed;
+    int returnX;
+    int returnY;
     boolean firstDraw = true;
 
     public Snowflake(int posX, int posY, int offset, int speed){
@@ -67,24 +85,36 @@ class Snowflake{
         this.speed = speed;
     }
 
-    public void drawSnowflake(){
+    public boolean drawSnowflake(){
+        boolean returnV;
         if(firstDraw == true){
             createSFShape(posX,posY,offset);
             firstDraw = false;
+            returnV = false;
         }
         else{
             int rPosY;
-            if(posY >= height){
+            if(posY >= height - 30){
+                if(posX >= mouseX - 50 && posX <= mouseX + 50){
+                    returnV = true;
+                }
+                else{
+                    returnV = false;
+                }
                 rPosY = 0;
                 posY = rPosY;
                 posX = PApplet.parseInt(random(offset, width));
+                
             }
+
             else{
                 rPosY = posY + speed;
                 posY = rPosY;
+                returnV = false;
             }
             createSFShape(posX,rPosY,offset);
         }
+        return returnV;
     }
 
     public void createSFShape(int x, int y, int offset){
@@ -93,10 +123,19 @@ class Snowflake{
         line(x - offset, y, x + offset, y);
         line(x - offset, y - offset, x + offset, y + offset);
         line(x + offset, y - offset, x - offset, y + offset);
-        
+        returnX = x;
+        returnY = y;
+    }
+
+    public int getX(){
+        return returnX;
+    }
+
+    public int getY(){
+        return returnY;
     }
 }
-  public void settings() {  fullScreen(P2D); }
+  public void settings() {  size(500,500); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "SFGStreamline" };
     if (passedArgs != null) {
