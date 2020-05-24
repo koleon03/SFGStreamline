@@ -3,7 +3,7 @@ Panel panel;
 Snowflake[] flakes;
 int score = 0;
 int highscore;
-int speed = 3;
+float speed = 3;
 void setup() {
     fullScreen(P2D);
     panel = new Panel();
@@ -29,12 +29,10 @@ void draw() {
         if(v == 1){
             score++;
             if(score > highscore) highscore = score;
-            if(score % 10 == 0){
-                speed++;
-                for(Snowflake sf1:flakes){
+            speed = speed + 0.1;
+            for(Snowflake sf1:flakes){
                     sf1.setSpeed(speed);
-                }
-            }
+             }
         }
 
         else if (v == 2){

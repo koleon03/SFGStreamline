@@ -19,7 +19,7 @@ Panel panel;
 Snowflake[] flakes;
 int score = 0;
 int highscore;
-int speed = 3;
+float speed = 3;
 public void setup() {
     
     panel = new Panel();
@@ -45,12 +45,10 @@ public void draw() {
         if(v == 1){
             score++;
             if(score > highscore) highscore = score;
-            if(score % 10 == 0){
-                speed++;
-                for(Snowflake sf1:flakes){
+            speed = speed + 0.1f;
+            for(Snowflake sf1:flakes){
                     sf1.setSpeed(speed);
-                }
-            }
+             }
         }
 
         else if (v == 2){
@@ -92,15 +90,15 @@ class Panel{
 }
 class Snowflake{
 
-    int posX;
-    int posY;
-    int offset;
-    int speed;
-    int returnX;
-    int returnY;
+    float posX;
+    float posY;
+    float offset;
+    float speed;
+    float returnX;
+    float returnY;
     boolean firstDraw = true;
 
-    public Snowflake(int posX, int posY, int offset, int speed){
+    public Snowflake(float posX, float posY, float offset, float speed){
         this.posX = posX;
         this.posY = posY;
         this.offset = offset;
@@ -115,7 +113,7 @@ class Snowflake{
             returnV = 0;
         }
         else{
-            int rPosY;
+            float rPosY;
             if(posY >= height - 30){
                 if(posX >= mouseX - 150 && posX <= mouseX + 150){
                     returnV = 1;
@@ -139,7 +137,7 @@ class Snowflake{
         return returnV;
     }
 
-    public void createSFShape(int x, int y, int offset){
+    public void createSFShape(float x, float y, float offset){
         stroke(255);
         line(x, y - offset, x, y + offset);
         line(x - offset, y, x + offset, y);
@@ -149,15 +147,15 @@ class Snowflake{
         returnY = y;
     }
 
-    public int getX(){
+    public float getX(){
         return returnX;
     }
 
-    public int getY(){
+    public float getY(){
         return returnY;
     }
 
-    public void setSpeed(int speed){
+    public void setSpeed(float speed){
         this.speed = speed;
     }
 }
