@@ -8,11 +8,11 @@ class Panel{
     }
 
     public void drawPanel(){
-        int cX = mouseX - 50;
+        int cX = mouseX - 150;
         int cY = height - 30;
-        rect(cX,cY,100,30);
+        rect(cX,cY,300,30);
         lx = cX;
-        rx = cX + 100;
+        rx = cX + 300;
     } 
 
     public int getLX(){

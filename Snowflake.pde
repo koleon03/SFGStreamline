@@ -25,7 +25,7 @@ class Snowflake{
         else{
             int rPosY;
             if(posY >= height - 30){
-                if(posX >= mouseX - 50 && posX <= mouseX + 50){
+                if(posX >= mouseX - 150 && posX <= mouseX + 150){
                     returnV = 1;
                 }
                 else{

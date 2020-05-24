@@ -3,8 +3,7 @@ Panel panel;
 Snowflake[] flakes;
 int score = 0;
 void setup() {
-    //fullScreen(P2D);
-    size(500,500);
+    fullScreen(P2D);
     panel = new Panel();
     flakes = new Snowflake[5];
     int fHeight = 0;

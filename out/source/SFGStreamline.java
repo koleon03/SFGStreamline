@@ -19,7 +19,6 @@ Panel panel;
 Snowflake[] flakes;
 int score = 0;
 public void setup() {
-    //fullScreen(P2D);
     
     panel = new Panel();
     flakes = new Snowflake[5];
@@ -59,11 +58,11 @@ class Panel{
     }
 
     public void drawPanel(){
-        int cX = mouseX - 50;
+        int cX = mouseX - 150;
         int cY = height - 30;
-        rect(cX,cY,100,30);
+        rect(cX,cY,300,30);
         lx = cX;
-        rx = cX + 100;
+        rx = cX + 300;
     } 
 
     public int getLX(){
@@ -102,7 +101,7 @@ class Snowflake{
         else{
             int rPosY;
             if(posY >= height - 30){
-                if(posX >= mouseX - 50 && posX <= mouseX + 50){
+                if(posX >= mouseX - 150 && posX <= mouseX + 150){
                     returnV = 1;
                 }
                 else{
@@ -142,7 +141,7 @@ class Snowflake{
         return returnY;
     }
 }
-  public void settings() {  size(500,500); }
+  public void settings() {  fullScreen(P2D); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "SFGStreamline" };
     if (passedArgs != null) {
