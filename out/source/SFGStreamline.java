@@ -24,6 +24,14 @@ public void setup() {
     
     panel = new Panel();
     flakes = new Snowflake[5];
+    if(loadStrings("score.txt") != null){
+        String[] strs;
+        strs = loadStrings("score.txt");
+        highscore = PApplet.parseInt(strs[0]);
+    }
+    else{
+        highscore = 0;
+    }
     int fHeight = 0;
     for(int i = 0;i < flakes.length; i++){
         flakes[i] = new Snowflake(PApplet.parseInt(random(20, width - 20)), fHeight, 20, speed);
@@ -44,7 +52,12 @@ public void draw() {
         int v = sf.drawSnowflake();
         if(v == 1){
             score++;
-            if(score > highscore) highscore = score;
+            if(score > highscore){
+                 highscore = score;
+                String[] strs = new String[1];
+                strs[0] = Integer.toString(highscore);
+                saveStrings("score.txt", strs);
+            }
             speed = speed + 0.1f;
             for(Snowflake sf1:flakes){
                     sf1.setSpeed(speed);
