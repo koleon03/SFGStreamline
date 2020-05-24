@@ -17,7 +17,7 @@ public class SFGStreamline extends PApplet {
 //Global vars
 Panel panel;
 Snowflake[] flakes;
-
+int score = 0;
 public void setup() {
     //fullScreen(P2D);
     
@@ -34,12 +34,19 @@ public void setup() {
 
 public void draw() {
     background(0);
+    textSize(32);
+    text("Score: " + score, 10,30);
     panel.drawPanel();
     for(Snowflake sf:flakes){
-        if(sf.drawSnowflake()){
-            println("Score");
-            }
+        int v = sf.drawSnowflake();
+        if(v == 1){
+            score++;
         }
+
+        else if (v == 2){
+            score = 0;
+        }
+    }
  }
     
 class Panel{
@@ -85,21 +92,21 @@ class Snowflake{
         this.speed = speed;
     }
 
-    public boolean drawSnowflake(){
-        boolean returnV;
+    public int drawSnowflake(){
+        int returnV;
         if(firstDraw == true){
             createSFShape(posX,posY,offset);
             firstDraw = false;
-            returnV = false;
+            returnV = 0;
         }
         else{
             int rPosY;
             if(posY >= height - 30){
                 if(posX >= mouseX - 50 && posX <= mouseX + 50){
-                    returnV = true;
+                    returnV = 1;
                 }
                 else{
-                    returnV = false;
+                    returnV = 2;
                 }
                 rPosY = 0;
                 posY = rPosY;
@@ -110,7 +117,7 @@ class Snowflake{
             else{
                 rPosY = posY + speed;
                 posY = rPosY;
-                returnV = false;
+                returnV = 0;
             }
             createSFShape(posX,rPosY,offset);
         }

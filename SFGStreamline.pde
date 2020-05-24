@@ -1,7 +1,7 @@
 //Global vars
 Panel panel;
 Snowflake[] flakes;
-
+int score = 0;
 void setup() {
     //fullScreen(P2D);
     size(500,500);
@@ -18,11 +18,18 @@ void setup() {
 
 void draw() {
     background(0);
+    textSize(32);
+    text("Score: " + score, 10,30);
     panel.drawPanel();
     for(Snowflake sf:flakes){
-        if(sf.drawSnowflake()){
-            println("Score");
-            }
+        int v = sf.drawSnowflake();
+        if(v == 1){
+            score++;
         }
+
+        else if (v == 2){
+            score = 0;
+        }
+    }
  }
     

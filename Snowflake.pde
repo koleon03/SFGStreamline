@@ -15,21 +15,21 @@ class Snowflake{
         this.speed = speed;
     }
 
-    public boolean drawSnowflake(){
-        boolean returnV;
+    public int drawSnowflake(){
+        int returnV;
         if(firstDraw == true){
             createSFShape(posX,posY,offset);
             firstDraw = false;
-            returnV = false;
+            returnV = 0;
         }
         else{
             int rPosY;
             if(posY >= height - 30){
                 if(posX >= mouseX - 50 && posX <= mouseX + 50){
-                    returnV = true;
+                    returnV = 1;
                 }
                 else{
-                    returnV = false;
+                    returnV = 2;
                 }
                 rPosY = 0;
                 posY = rPosY;
@@ -40,7 +40,7 @@ class Snowflake{
             else{
                 rPosY = posY + speed;
                 posY = rPosY;
-                returnV = false;
+                returnV = 0;
             }
             createSFShape(posX,rPosY,offset);
         }
