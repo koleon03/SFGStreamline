@@ -16,19 +16,27 @@ public class SFGStreamline extends PApplet {
 
 //Global vars
 Panel panel;
-Snowflake sf;
+Snowflake[] flakes;
 
 public void setup() {
     
     panel = new Panel();
-    sf = new Snowflake(width/2, 0, 20, 3);
+    flakes = new Snowflake[5];
+    int fHeight = 0;
+    for(int i = 0;i < flakes.length; i++){
+        flakes[i] = new Snowflake(PApplet.parseInt(random(20, width - 20)), fHeight, 20, 3);
+        flakes[i].drawSnowflake();
+        fHeight = fHeight - 200;
+    }
 
 }
 
 public void draw() {
     background(0);
     panel.drawPanel();
-    sf.drawSnowflake();
+    for(Snowflake sf:flakes){
+        sf.drawSnowflake();
+    }
     
 }
 class Panel{

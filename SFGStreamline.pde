@@ -1,17 +1,25 @@
 //Global vars
 Panel panel;
-Snowflake sf;
+Snowflake[] flakes;
 
 void setup() {
     fullScreen(P2D);
     panel = new Panel();
-    sf = new Snowflake(width/2, 0, 20, 3);
+    flakes = new Snowflake[5];
+    int fHeight = 0;
+    for(int i = 0;i < flakes.length; i++){
+        flakes[i] = new Snowflake(int(random(20, width - 20)), fHeight, 20, 3);
+        flakes[i].drawSnowflake();
+        fHeight = fHeight - 200;
+    }
 
 }
 
 void draw() {
     background(0);
     panel.drawPanel();
-    sf.drawSnowflake();
+    for(Snowflake sf:flakes){
+        sf.drawSnowflake();
+    }
     
 }
