@@ -64,4 +64,8 @@ class Snowflake{
     public int getY(){
         return returnY;
     }
+
+    public void setSpeed(int speed){
+        this.speed = speed;
+    }
 }

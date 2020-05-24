@@ -19,13 +19,14 @@ Panel panel;
 Snowflake[] flakes;
 int score = 0;
 int highscore;
+int speed = 3;
 public void setup() {
     
     panel = new Panel();
     flakes = new Snowflake[5];
     int fHeight = 0;
     for(int i = 0;i < flakes.length; i++){
-        flakes[i] = new Snowflake(PApplet.parseInt(random(20, width - 20)), fHeight, 20, 3);
+        flakes[i] = new Snowflake(PApplet.parseInt(random(20, width - 20)), fHeight, 20, speed);
         flakes[i].drawSnowflake();
         fHeight = fHeight - 200;
     }
@@ -44,11 +45,21 @@ public void draw() {
         if(v == 1){
             score++;
             if(score > highscore) highscore = score;
+            if(score % 10 == 0){
+                speed++;
+                for(Snowflake sf1:flakes){
+                    sf1.setSpeed(speed);
+                }
+            }
         }
 
         else if (v == 2){
             if(score > highscore) highscore = score;
             score = 0;
+            speed = 3;
+            for(Snowflake sf1:flakes){
+                    sf1.setSpeed(speed);
+             }
         }
     }
  }
@@ -144,6 +155,10 @@ class Snowflake{
 
     public int getY(){
         return returnY;
+    }
+
+    public void setSpeed(int speed){
+        this.speed = speed;
     }
 }
   public void settings() {  fullScreen(P2D); }
