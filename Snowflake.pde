@@ -23,6 +23,7 @@ class Snowflake{
             if(posY >= height){
                 rPosY = 0;
                 posY = rPosY;
+                posX = int(random(offset, width));
             }
             else{
                 rPosY = posY + speed;

@@ -77,6 +77,7 @@ class Snowflake{
             if(posY >= height){
                 rPosY = 0;
                 posY = rPosY;
+                posX = PApplet.parseInt(random(offset, width));
             }
             else{
                 rPosY = posY + speed;
