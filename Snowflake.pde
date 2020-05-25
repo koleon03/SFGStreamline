@@ -54,7 +54,7 @@ class Snowflake{
     }
 
     public void createSFShape(float x, float y, float offset, int colorR, int colorG, int colorB){
-        stroke(255);
+        stroke(colorR, colorG, colorB);
         line(x, y - offset, x, y + offset);
         line(x - offset, y, x + offset, y);
         line(x - offset, y - offset, x + offset, y + offset);
