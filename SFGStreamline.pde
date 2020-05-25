@@ -18,7 +18,7 @@ void setup() {
     }
     int fHeight = 0;
     for(int i = 0;i < flakes.length; i++){
-        flakes[i] = new Snowflake(int(random(20, width - 20)), fHeight, 20, speed);
+        flakes[i] = new Snowflake(int(random(20, width - 20)), fHeight, 20, speed, 255, 255, 255);
         flakes[i].drawSnowflake();
         fHeight = fHeight - 200;
     }

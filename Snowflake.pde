@@ -18,7 +18,7 @@ class Snowflake{
         this.speed = speed;
         this.colorR = colorR;
         this.colorG = colorG;
-        this colorB = colorB;
+        this.colorB = colorB;
     }
 
     public int drawSnowflake(){
