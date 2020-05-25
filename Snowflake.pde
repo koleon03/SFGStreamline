@@ -6,19 +6,25 @@ class Snowflake{
     float speed;
     float returnX;
     float returnY;
+    int colorR;
+    int colorG;
+    int colorB;
     boolean firstDraw = true;
 
-    public Snowflake(float posX, float posY, float offset, float speed){
+    public Snowflake(float posX, float posY, float offset, float speed, int colorR, int colorG, int colorB){
         this.posX = posX;
         this.posY = posY;
         this.offset = offset;
         this.speed = speed;
+        this.colorR = colorR;
+        this.colorG = colorG;
+        this colorB = colorB;
     }
 
     public int drawSnowflake(){
         int returnV;
         if(firstDraw == true){
-            createSFShape(posX,posY,offset);
+            createSFShape(posX,posY,offset, colorR, colorG, colorB);
             firstDraw = false;
             returnV = 0;
         }
@@ -42,12 +48,12 @@ class Snowflake{
                 posY = rPosY;
                 returnV = 0;
             }
-            createSFShape(posX,rPosY,offset);
+            createSFShape(posX,rPosY,offset, colorR, colorG, colorB);
         }
         return returnV;
     }
 
-    public void createSFShape(float x, float y, float offset){
+    public void createSFShape(float x, float y, float offset, int colorR, int colorG, int colorB){
         stroke(255);
         line(x, y - offset, x, y + offset);
         line(x - offset, y, x + offset, y);
@@ -67,5 +73,11 @@ class Snowflake{
 
     public void setSpeed(float speed){
         this.speed = speed;
+    }
+
+    public void setColor(int colorR, int colorG, int colorB){
+        this.colorR = colorR;
+        this.colorG = colorG;
+        this.colorB = colorB;
     }
 }

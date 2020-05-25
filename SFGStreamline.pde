@@ -3,7 +3,7 @@ Panel panel;
 Snowflake[] flakes;
 int score = 0;
 int highscore;
-float speed = 5;
+float speed = 3;
 void setup() {
     fullScreen(P2D);
     panel = new Panel();
